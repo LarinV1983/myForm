@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import {LoginValidation, passwordValidation} from './validation';
 import { useForm, Controller, SubmitHandler, useFormState } from "react-hook-form";
 import './AuthForm.css';
 
@@ -28,7 +29,7 @@ interface SignForm {
       <Controller
       	control={control}
       	name="login"
-      	rules={{ required:'Обязательно для заполнения'}}
+      	rules={LoginValidation}
       	render={({ field }) => ( 
       		<TextField
           label="Логин"
@@ -42,7 +43,7 @@ interface SignForm {
       <Controller
       	control={control}
       	name="password"
-      	rules={{ required:'Обязательно для заполнения'}}
+      	rules={passwordValidation}
       	render={({ field }) => ( 
       		<TextField
           label="Пароль"
