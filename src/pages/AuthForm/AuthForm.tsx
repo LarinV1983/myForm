@@ -21,7 +21,10 @@ interface SignForm {
 		<Typography variant="h4" component="div" gutterBottom>
         Войдите
       </Typography>
-      	<Typography variant="subtitle1" component="div" gutterBottom>
+      	<Typography 
+        className='auth-form__subtitle' 
+        variant="subtitle1" component="div" 
+        gutterBottom>
         Чтобы получить доступ
       </Typography>
       <form className='auth-form__form' 
@@ -32,9 +35,13 @@ interface SignForm {
       	rules={LoginValidation}
       	render={({ field }) => ( 
       		<TextField
+          className='auth-form__input'
           label="Логин"
+          size='small'
+          margin="normal"
+          fullWidth={ true }
           onChange={ (e)=> field.onChange(e) }
-          value={ field.value || '' }
+          value={ field.value}
           error={!!errors.login?.message}
           helperText={errors.login?.message}
         	/>
@@ -46,20 +53,39 @@ interface SignForm {
       	rules={passwordValidation}
       	render={({ field }) => ( 
       		<TextField
+          className='auth-form__input'
+          size="small"
+          margin="normal"
           label="Пароль"
           type="password"
+          fullWidth={ true }
           onChange={ (e)=> field.onChange(e) }
-          value={ field.value || '' }
+          value={ field.value}
           error={!!errors.password?.message}
           helperText={errors.password?.message}
         	/>
         )}
       />
-        <Button type="submit" variant="contained">
+        <Button
+        type="submit"
+        variant="contained"
+        fullWidth={ true }
+        disableElevation={ true }
+        sx={{
+            marginTop: 2
+            }}>
         	Войти
         </Button>
       </form>
-		</div>
+      <div className="auth-form__footer">
+                <Typography variant="subtitle1" component="span">
+                    Нету аккаунта?{" "}
+                </Typography>
+                <Typography variant="subtitle1" component="span" sx={{ color: 'blue'}}>
+                    Зарегистрируйтесь
+                </Typography>
+            </div>
+        </div>
 	);
 }
 
